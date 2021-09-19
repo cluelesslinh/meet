@@ -9,6 +9,11 @@ import './nprogress.css';
 
 class App extends Component {
 
+  state = {
+    events: [],
+    locations: []
+  }
+
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
@@ -20,11 +25,6 @@ class App extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
-  }
-
-  state = {
-    events: [],
-    locations: []
   }
 
   updateEvents = (location) => {
