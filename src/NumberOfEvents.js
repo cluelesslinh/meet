@@ -21,6 +21,7 @@ class NumberOfEvents extends Component {
           <input
           type="text"
           id="number"
+          className="EventsNumber"
           value={numberOfEvents}
           onChange={(e) => this.handleChange(e)} />
         </label>
