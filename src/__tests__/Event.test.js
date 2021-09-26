@@ -1,37 +1,31 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Event from '../Event';
-import EventList from '../EventList';
 import { mockData } from '../mock-data';
 
-describe('<EventList /> component', () => {
-  let createdEvent;
+
+describe('<Event /> component', () => {
+  let EventWrapper;
   beforeAll(() => {
-    createdEvent = shallow(<Event event={mockData[0]} />)
+    EventWrapper = shallow(<Event event={mockData} />);
   });
 
-  test('render event list', () => {
-    const EventListWrapper = shallow(<EventList events={mockData} />);
-    expect(EventListWrapper.find(Event)).toHaveLength(mockData.length);
-  });
+  test('render Event Title', () => {
+    expect(EventWrapper.find('.event')).toHaveLength(1);
+  })
 
-  test('render the event show more button', () => {
-    expect(createdEvent.find('.details-btn')).toHaveLength(1);
-  });
+  test('render basic event information', () => {
+    expect(EventWrapper.find('.name')).toHaveLength(1);
+  })
 
-  test('show more button should be false on render', () => {
-    expect(createdEvent.state('showMore')).toBe(false);
-  });
+  test('have a show details button', () => {
+    expect(EventWrapper.find('.details-btn')).toHaveLength(1);
+  })
 
-  test('if showMore is false, simulates a click showing more details', () => {
-    const changeState = createdEvent.state({showMore: true});
-    createdEvent.find('.details-btn').simulate('click', changeState);
-    expect(createdEvent.state('showMore')).toBe(true);
-  });
+  test('event details expand on click', () => {
+    EventWrapper.setState({ showHideDetails: false })
+    EventWrapper.find('.details-btn').simulate('click');
+    expect(EventWrapper.state('showHideDetails')).toBe(true);
+  })
 
-  test('if showMore is true, simulates a click showing less details', () => {
-    const changeState = createdEvent.state({showMore: false});
-    createdEvent.find('.details-btn').simulate('click', changeState);
-    expect(createdEvent.state('showMore')).toBe(false);
-  });
-});
+})
