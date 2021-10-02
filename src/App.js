@@ -4,7 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
-import WelcomeScreen from ',/WelcomeScreen';
+import WelcomeScreen from './WelcomeScreen';
 import "./nprogress.css";
 
 class App extends Component {
