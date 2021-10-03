@@ -68,10 +68,10 @@ export const getEvents = async () => {
     const url = `https://kd2pljzma0.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/${token}`;
     const result = await axios.get(url);
     if (result.data) {
-      var locations = extractLocations(result.data.events);
-      localStorage.setItem("lastEvents", JSON.stringify(result.data));
-      localStorage.setItem("locations", JSON.stringify(locations));
-    }
+        var locations = extractLocations(result.data.events);
+        localStorage.setItem('lastEvents', JSON.stringify(result.data));
+        localStorage.setItem('locations', JSON.stringify(locations));
+      }
     NProgress.done();
     return result.data.events;
   }
