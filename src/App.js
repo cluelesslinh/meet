@@ -3,14 +3,18 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { extractLocations, getEvents } from './api';
+import WelcomeScreen from './WelcomeScreen';
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
+import { WarningAlert } from './Alert';
 import "./nprogress.css";
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 32
+    numberOfEvents: 32,
+    showWelcomeScreen: undefined,
+    warningText: ''
   }
 
   updateEvents = (location, eventCount) => {
@@ -30,16 +34,33 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events: events.slice(0, this.state.numberOfEvents),
+            locations: extractLocations(events),
+          });
+        }
+      });
+      if (!navigator.onLine) {
         this.setState({
-          events: events.slice(0, this.state.eventCount),
-          locations: extractLocations(events),
-        });
+          warningText: 'Cached data is being displayed.'
+        })
       }
-    });
+      else {
+        this.setState({
+          warningText: ''
+        })
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -47,6 +68,8 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div
+      className="App" />
     return (
       <div className="App">
         <CitySearch
@@ -58,12 +81,16 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
         />
+        <WarningAlert text={this.state.offlinealert} />
         <EventList
           events={this.state.events}
         />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
 }
+
 
 export default App;
