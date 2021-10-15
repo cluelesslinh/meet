@@ -19,6 +19,7 @@ class Event extends Component {
     return (
       <div className='event'>
         <h1 className='name'>{event.summary}</h1>
+        <p>{event.start.dateTime}</p>
         <p className='locations'>{event.location}</p>
 
         {this.state.showHideDetails && (
