@@ -9,7 +9,7 @@ const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 defineFeature(feature, test => {
   let AppWrapper;
   let NumberOfEventsWrapper;
-  test('When user hasn’t specified a number, 5 is the default number', ({ given, when, then }) => {
+  test('When user hasn’t specified a number, 12 is the default number', ({ given, when, then }) => {
     given('the user hasn’t specified any number', () => {
       NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => { }} />);
     });
@@ -18,8 +18,8 @@ defineFeature(feature, test => {
       AppWrapper = mount(<App />);
     });
 
-    then('the number of events will be 5', () => {
-      expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(5);
+    then('the number of events will be 12', () => {
+      expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(12);
     });
   });
 
@@ -29,7 +29,7 @@ defineFeature(feature, test => {
     });
 
     when('the user change the number of events they want to see', () => {
-      AppWrapper.find(".event-number-input").simulate("change", {
+      AppWrapper.find(".numberInput").simulate("change", {
         target: { value: 7 }
       })
     });

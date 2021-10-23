@@ -4,7 +4,7 @@ import './WelcomeScreen.css';
 function WelcomeScreen(props) {
   return props.showWelcomeScreen ? (
       <div className="WelcomeScreen">
-        <h1>Welcome to the Meet app</h1>
+        <h1>Welcome to the Meet App</h1>
         <h4>
           Log in to see upcoming events around the world for full-stack developers
         </h4>
@@ -25,12 +25,22 @@ function WelcomeScreen(props) {
             </button>
           </div>
         </div>
-        <a
-          href="https://cluelesslinh.github.io/meet/privacy.html"
-          rel="nofollow noopener"
-        >
-          Privacy policy
-        </a>
+          <div>
+          <a
+            href="https://cluelesslinh.github.io/meet/privacy.html"
+            rel="nofollow noopener"
+          >
+            Privacy policy
+          </a>
+        </div>
+            <h1 class="disclaimerTitle">Disclaimer</h1>
+            <p class="disclaimerSummary">This app uses the Google Calendar API to fetch upcoming events. A user may filter
+               events by city, show/hide event details, specify the number of events shown, use the
+               app when offline, add an app shortcut of the home screen, and view a chart showing
+               the number of upcoming events by city.
+             </p><br></br>
+           <p>*This app is for education purposes only and has no commercial intent or use.*
+            </p>
       </div>
     )
     : null

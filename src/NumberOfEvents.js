@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
+
   state = {
-    numberOfEvents: 10,
-    errorText: '',
+    numberOfEvents: 12,
+    errorText: ''
   }
 
   handleInputChanged = (event) => {
@@ -34,7 +35,7 @@ class NumberOfEvents extends Component {
         <label htmlFor='numberOfEvent'>Number of Events</label>
         <input
           type="number"
-          className="event-number-input"
+          className="numberInput"
           placeholder='Enter Number of Events'
           value={this.state.numberOfEvents}
           onChange={this.handleInputChanged}

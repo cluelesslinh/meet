@@ -17,11 +17,9 @@ defineFeature(feature, test => {
       EventListWrapper = mount(<EventList events={mockData} />);
       EventWrapper = mount(<Event event={mockData[0]} />);
     });
-
     when('the user opens the app', () => {
       AppWrapper = mount(<App />);
     });
-
     then('the user should see a list of all the events without details', () => {
       expect(EventWrapper.find(".event-details")).toHaveLength(0);
     });
@@ -33,11 +31,9 @@ defineFeature(feature, test => {
       EventListWrapper = mount(<EventList events={mockData} />);
       EventWrapper = mount(<Event event={mockData[0]} />);
     });
-
     when('the user clicked on expand/more details button on a specific event', () => {
       EventWrapper.find(".details-btn").simulate("click");
     });
-
     then('the user should see the details of this specific event', () => {
       expect(EventWrapper.find(".event-details")).toHaveLength(1);
     });
@@ -51,11 +47,9 @@ defineFeature(feature, test => {
       EventWrapper.find(".details-btn").simulate("click");
       EventWrapper.find(".event-details");
     });
-
     when('the user clicks on the collapse/show less button', () => {
       EventWrapper.find(".details-btn").simulate("click");
     });
-
     then('the user should no longer see the event’s details', () => {
       expect(EventWrapper.find(".event-details")).toHaveLength(0);
     });
