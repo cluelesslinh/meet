@@ -5,7 +5,7 @@ const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
 
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS', 'Angular', 'Node.js'];
-  const COLORS = ['#F2A365', '#BBE1FA', '#903749', '#219897', '#616f39', '#3B8EFF', '#FF891A'];
+  const COLORS = ['#F2A365', '#BBE1FA', '#903749', '#219897', '#616f39', '#3B8EFF', '#FF8C2C'];
 
   const getData = () => {
     let data = genres.map((genre) => {
@@ -34,7 +34,7 @@ const EventGenre = ({ events }) => {
           label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
         >
           {
-            data.map((index) => (
+            data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index]} />
             ))
           }
