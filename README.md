@@ -1,6 +1,6 @@
 # Meet App
 
-A serverless, progressive web application (PWA) with Reach using a test-driven development (TDD) technique. The app uses the Google Calendar API to fetch upcoming events.
+A serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The app uses the Google Calendar API to fetch upcoming events.
 
 ## FEATURE 1: FILTER EVENTS BY CITY
 
@@ -112,5 +112,3 @@ Given: the user looks at an event
 When: the user clicks on the chart
 
 Then: the user should see a chart of upcoming events for each city
-
- 
