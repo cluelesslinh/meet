@@ -51,9 +51,7 @@ When: the user clicks on one of the events
 Then: the element expands showing details about the event  
 
 
-Scenario 3: User can collapse an event to hide its details.
-
-
+### Scenario 3: User can collapse an event to hide its details.
 
 Given: the user selected an event to show its details
 
